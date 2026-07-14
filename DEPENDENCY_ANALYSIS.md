@@ -1,0 +1,805 @@
+# Dependency Analysis
+
+## Module Imports
+- **refactor.py**
+  - `re`
+- **remove_memory_store.py**
+  - `re`
+- **remove_models.py**
+  - `re`
+- **app\main.py**
+  - `fastapi`
+  - `opentelemetry`
+  - `app.api.v1.api`
+  - `sys`
+  - `fastapi.middleware.cors`
+  - `app.core.config`
+  - `opentelemetry.sdk.resources`
+  - `app.db.database`
+  - `app.schemas.api_schemas`
+  - `logging`
+  - `structlog`
+  - `fastapi.responses`
+  - `opentelemetry.sdk.trace.export`
+  - `opentelemetry.exporter.otlp.proto.grpc.trace_exporter`
+  - `sentry_sdk`
+  - `opentelemetry.instrumentation.fastapi`
+  - `prometheus_client`
+  - `app.core.middleware`
+  - `opentelemetry.sdk.trace`
+- **app\agents\dataset_understanding.py**
+  - `json`
+  - `os`
+  - `typing`
+  - `pandas`
+- **app\agents\data_quality.py**
+  - `os`
+  - `typing`
+  - `json`
+  - `numpy`
+  - `pandas`
+- **app\agents\domain_detection.py**
+  - `json`
+  - `os`
+  - `typing`
+  - `pandas`
+- **app\agents\workflow_planner.py**
+  - `app.brain.memory`
+  - `json`
+  - `os`
+  - `typing`
+- **app\api\v1\api.py**
+  - `app.core.auth`
+  - `app.api.v1`
+  - `fastapi`
+- **app\api\v1\routes_agents.py**
+  - `app.services.agent_registry`
+  - `pydantic`
+  - `fastapi`
+  - `typing`
+- **app\api\v1\routes_approval.py**
+  - `os`
+  - `fastapi`
+  - `typing`
+  - `json`
+  - `pydantic`
+- **app\api\v1\routes_auth.py**
+  - `fastapi`
+  - `fastapi.security`
+  - `app.core.auth`
+  - `app.models.models`
+  - `app.db.database`
+  - `datetime`
+  - `pydantic`
+  - `sqlalchemy.orm`
+- **app\api\v1\routes_data.py**
+  - `app.services.data_service`
+  - `fastapi`
+  - `app.schemas.data_schemas`
+  - `io`
+  - `app.core.auth`
+  - `app.models.models`
+  - `app.services.dataset_processor`
+  - `app.db.database`
+  - `datetime`
+  - `app.core.context`
+  - `uuid`
+  - `pandas`
+  - `sqlalchemy.orm`
+- **app\api\v1\routes_orchestrator.py**
+  - `app.services.data_service`
+  - `app.schemas.orchestrator_schemas`
+  - `app.core.langgraph_engine`
+  - `fastapi`
+- **app\api\v1\routes_platform.py**
+  - `app.core.redis_client`
+  - `fastapi`
+  - `typing`
+  - `rq`
+  - `fakeredis`
+  - `app.services.platform_services`
+  - `app.schemas.api_schemas`
+  - `logging`
+- **app\brain\brain.py**
+  - `app.brain.state`
+  - `psutil`
+  - `typing`
+  - `os`
+  - `app.brain.planner`
+  - `app.brain.context`
+  - `app.brain.models`
+  - `asyncio`
+  - `app.brain.logger`
+  - `app.services.decision_engine`
+  - `time`
+- **app\brain\config.py**
+- **app\brain\context.py**
+  - `app.brain.state`
+  - `typing`
+- **app\brain\logger.py**
+  - `os`
+  - `logging`
+- **app\brain\memory.py**
+  - `typing`
+  - `json`
+  - `os`
+  - `time`
+- **app\brain\models.py**
+  - `pydantic`
+  - `typing`
+- **app\brain\planner.py**
+  - `app.brain.models`
+  - `typing`
+- **app\brain\state.py**
+  - `typing`
+- **app\brain\__init__.py**
+  - `app.brain.brain`
+  - `app.brain.models`
+- **app\core\ai_service.py**
+  - `ai_service`
+  - `os`
+  - `sys`
+- **app\core\auth.py**
+  - `passlib.context`
+  - `os`
+  - `fastapi`
+  - `typing`
+  - `fastapi.security`
+  - `app.models.models`
+  - `jwt`
+  - `datetime`
+  - `app.db.database`
+  - `app.core.context`
+  - `sqlalchemy.orm`
+- **app\core\config.py**
+  - `pydantic_settings`
+- **app\core\context.py**
+  - `contextvars`
+- **app\core\langgraph_engine.py**
+  - `os`
+  - `orchestrator`
+  - `asyncio`
+  - `sys`
+  - `app.brain.brain`
+  - `pandas`
+- **app\core\logger.py**
+  - `sys`
+  - `logging`
+- **app\core\middleware.py**
+  - `app.core.config`
+  - `fastapi`
+  - `starlette.middleware.base`
+  - `jwt`
+  - `starlette.responses`
+  - `time`
+- **app\core\redis_client.py**
+  - `fakeredis`
+  - `json`
+  - `os`
+  - `redis`
+- **app\db\database.py**
+  - `sqlalchemy`
+  - `os`
+  - `sqlalchemy.orm`
+- **app\models\models.py**
+  - `sqlalchemy`
+  - `datetime`
+  - `app.db.database`
+  - `uuid`
+  - `sqlalchemy.orm`
+- **app\schemas\api_schemas.py**
+  - `pydantic`
+  - `typing`
+- **app\schemas\data_schemas.py**
+  - `pydantic`
+  - `typing`
+- **app\schemas\orchestrator_schemas.py**
+  - `pydantic`
+  - `typing`
+- **app\services\agent_communication_bus.py**
+  - `traceback`
+  - `os`
+  - `typing`
+  - `json`
+  - `uuid`
+  - `time`
+- **app\services\agent_registry.py**
+  - `typing`
+- **app\services\context_builder.py**
+  - `app.core.redis_client`
+  - `json`
+  - `os`
+  - `typing`
+- **app\services\dataset_processor.py**
+  - `app.services.data_service`
+  - `os`
+  - `typing`
+  - `app.services.privacy_agent`
+  - `json`
+  - `datetime`
+  - `sys`
+  - `numpy`
+  - `pandas`
+- **app\services\data_service.py**
+  - `os`
+  - `typing`
+  - `json`
+  - `sys`
+  - `app.core.context`
+  - `pandas`
+- **app\services\decision_engine.py**
+  - `app.core.redis_client`
+  - `os`
+  - `psutil`
+  - `typing`
+  - `json`
+  - `hashlib`
+  - `asyncio`
+  - `time`
+- **app\services\intent_router.py**
+  - `re`
+  - `typing`
+- **app\services\knowledge_memory.py**
+  - `os`
+  - `typing`
+  - `json`
+- **app\services\multi_agent_collaboration.py**
+  - `typing_extensions`
+  - `langgraph.graph`
+  - `typing`
+  - `time`
+- **app\services\platform_services.py**
+  - `app.services.data_service`
+  - `app.core.redis_client`
+  - `os`
+  - `app.services.intent_router`
+  - `app.models.models`
+  - `sklearn.model_selection`
+  - `app.agents.dataset_understanding`
+  - `datetime`
+  - `orchestrator`
+  - `app.core.context`
+  - `sys`
+  - `time`
+  - `joblib`
+  - `shutil`
+  - `sklearn.ensemble`
+  - `app.agents.data_quality`
+  - `uuid`
+  - `psutil`
+  - `ai_service`
+  - `app.services.dataset_processor`
+  - `app.db.database`
+  - `app.agents.domain_detection`
+  - `logging`
+  - `pandas`
+  - `torch`
+  - `json`
+  - `socket`
+  - `sklearn.linear_model`
+  - `numpy`
+  - `sklearn.metrics`
+  - `sklearn.preprocessing`
+  - `app.services.real_ai_analyst`
+  - `rq`
+- **app\services\privacy_agent.py**
+  - `os`
+  - `json`
+  - `numpy`
+  - `re`
+  - `pandas`
+- **app\services\real_ai_analyst.py**
+  - `contextlib`
+  - `traceback`
+  - `duckdb`
+  - `io`
+  - `polars`
+  - `matplotlib.pyplot`
+  - `pandas`
+- **app\services\reasoning_engine.py**
+  - `os`
+  - `typing`
+  - `psutil`
+  - `app.services.intent_router`
+  - `json`
+  - `time`
+- **app\services\recommendation_engine.py**
+  - `json`
+  - `os`
+  - `typing`
+- **app\services\semantic_search.py**
+  - `os`
+  - `typing`
+  - `math`
+  - `json`
+  - `app.services.knowledge_memory`
+- **app\tasks\worker_tasks.py**
+  - `app.services.data_service`
+  - `app.core.redis_client`
+  - `os`
+  - `json`
+  - `orchestrator`
+  - `numpy`
+  - `app.services.platform_services`
+  - `time`
+- **core\__init__.py**
+- **core\agents\__init__.py**
+- **core\api\__init__.py**
+- **core\auth\__init__.py**
+- **core\brain\brain.py**
+  - `core.memory.episodic.types`
+  - `core.brain.core_components`
+  - `typing`
+  - `core.memory.procedural.strategy_recommendation.interfaces`
+  - `core.memory.procedural.strategy_recommendation.types`
+  - `core.memory.procedural.strategy_learning.interfaces`
+  - `core.brain.deliberation.deliberation_controller`
+  - `core.memory.procedural.strategy_builder.interfaces`
+  - `core.memory.procedural.strategy_mining.strategy_miner`
+  - `core.brain.interfaces`
+- **core\brain\core_components.py**
+  - `datetime`
+  - `typing`
+  - `logging`
+- **core\brain\interfaces.py**
+  - `abc`
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.types`
+- **core\brain\types.py**
+  - `core.brain.deliberation.types`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_recommendation.types`
+  - `datetime`
+  - `pydantic`
+- **core\brain\__init__.py**
+- **core\brain\decision\__init__.py**
+- **core\brain\deliberation\alternative_analyzer.py**
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\confidence_engine.py**
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\deliberation_controller.py**
+  - `core.brain.deliberation.hypothesis_generator`
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.deliberation.confidence_engine`
+  - `logging`
+  - `core.brain.types`
+  - `core.brain.deliberation.rationale_builder`
+  - `core.brain.deliberation.question_generator`
+  - `core.brain.deliberation.evidence_collector`
+  - `core.brain.deliberation.alternative_analyzer`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\evidence_collector.py**
+  - `core.brain.deliberation.interfaces`
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.types`
+- **core\brain\deliberation\hypothesis_generator.py**
+  - `uuid`
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\interfaces.py**
+  - `abc`
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.types`
+- **core\brain\deliberation\question_generator.py**
+  - `core.brain.deliberation.types`
+  - `typing`
+  - `core.brain.types`
+  - `uuid`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\rationale_builder.py**
+  - `core.brain.deliberation.types`
+  - `core.brain.deliberation.interfaces`
+- **core\brain\deliberation\types.py**
+  - `datetime`
+  - `pydantic`
+  - `typing`
+- **core\brain\deliberation\__init__.py**
+- **core\brain\deliberation\tests\test_deliberation.py**
+  - `core.brain.deliberation.deliberation_controller`
+  - `core.brain.types`
+  - `pytest`
+- **core\brain\deliberation\tests\__init__.py**
+- **core\brain\execution\__init__.py**
+- **core\brain\learning\__init__.py**
+- **core\brain\perception\__init__.py**
+- **core\brain\planning\__init__.py**
+- **core\brain\reasoning\__init__.py**
+- **core\brain\tests\test_brain.py**
+  - `core.brain.deliberation.types`
+  - `pytest`
+  - `core.brain.brain`
+  - `core.brain.types`
+  - `unittest.mock`
+- **core\brain\tests\__init__.py**
+- **core\brain\understanding\__init__.py**
+- **core\engines\__init__.py**
+- **core\memory\__init__.py**
+- **core\memory\episodic\episode_index.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+- **core\memory\episodic\episode_retriever.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+- **core\memory\episodic\episode_scorer.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+- **core\memory\episodic\episode_similarity.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+- **core\memory\episodic\episode_store.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `logging`
+- **core\memory\episodic\episode_validator.py**
+  - `core.memory.episodic.interfaces`
+  - `typing`
+- **core\memory\episodic\episode_writer.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+- **core\memory\episodic\interfaces.py**
+  - `abc`
+  - `core.memory.episodic.types`
+  - `typing`
+- **core\memory\episodic\memory_controller.py**
+  - `core.memory.episodic.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `logging`
+- **core\memory\episodic\types.py**
+  - `uuid`
+  - `datetime`
+  - `pydantic`
+  - `typing`
+- **core\memory\episodic\__init__.py**
+- **core\memory\episodic\tests\test_episodic.py**
+  - `core.memory.episodic.episode_retriever`
+  - `core.memory.episodic.types`
+  - `core.memory.episodic.memory_controller`
+  - `core.memory.episodic.episode_index`
+  - `core.memory.episodic.episode_store`
+  - `pytest`
+  - `core.memory.episodic.episode_validator`
+  - `core.memory.episodic.episode_scorer`
+  - `core.memory.episodic.episode_writer`
+  - `core.memory.episodic.episode_similarity`
+- **core\memory\episodic\tests\__init__.py**
+- **core\memory\procedural\__init__.py**
+- **core\memory\procedural\strategy_builder\interfaces.py**
+  - `abc`
+  - `core.memory.procedural.strategy_builder.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+- **core\memory\procedural\strategy_builder\strategy_builder.py**
+  - `typing`
+  - `core.memory.procedural.strategy_builder.strategy_repository`
+  - `core.memory.procedural.strategy_validation.strategy_validator`
+  - `core.memory.procedural.strategy_builder.types`
+  - `core.memory.procedural.strategy_builder.interfaces`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_validation.types`
+  - `core.memory.procedural.strategy_builder.strategy_versioning`
+  - `core.memory.procedural.strategy_validation.interfaces`
+  - `logging`
+- **core\memory\procedural\strategy_builder\strategy_repository.py**
+  - `core.memory.procedural.strategy_builder.interfaces`
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+- **core\memory\procedural\strategy_builder\strategy_versioning.py**
+  - `core.memory.procedural.strategy_builder.interfaces`
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+- **core\memory\procedural\strategy_builder\types.py**
+  - `uuid`
+  - `datetime`
+  - `pydantic`
+  - `typing`
+- **core\memory\procedural\strategy_builder\__init__.py**
+- **core\memory\procedural\strategy_builder\tests\test_strategy_builder.py**
+  - `core.memory.procedural.strategy_builder.strategy_builder`
+  - `core.memory.procedural.strategy_mining.types`
+  - `pytest`
+- **core\memory\procedural\strategy_builder\tests\__init__.py**
+- **core\memory\procedural\strategy_learning\interfaces.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+  - `abc`
+  - `core.memory.procedural.strategy_learning.types`
+  - `core.memory.procedural.strategy_builder.interfaces`
+- **core\memory\procedural\strategy_learning\strategy_learner.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+  - `core.memory.procedural.strategy_learning.types`
+  - `core.memory.procedural.strategy_learning.interfaces`
+  - `core.memory.procedural.strategy_builder.interfaces`
+  - `copy`
+- **core\memory\procedural\strategy_learning\types.py**
+  - `enum`
+  - `datetime`
+  - `pydantic`
+  - `typing`
+- **core\memory\procedural\strategy_learning\__init__.py**
+- **core\memory\procedural\strategy_learning\tests\test_strategy_learning.py**
+  - `core.memory.episodic.types`
+  - `core.memory.procedural.strategy_builder.strategy_repository`
+  - `pytest`
+  - `core.memory.procedural.strategy_learning.strategy_learner`
+  - `core.memory.procedural.strategy_builder.types`
+  - `core.memory.procedural.strategy_learning.types`
+- **core\memory\procedural\strategy_learning\tests\__init__.py**
+- **core\memory\procedural\strategy_mining\episode_clusterer.py**
+  - `core.memory.procedural.strategy_mining.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+- **core\memory\procedural\strategy_mining\frequency_analyzer.py**
+  - `core.memory.procedural.strategy_mining.interfaces`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+- **core\memory\procedural\strategy_mining\interfaces.py**
+  - `abc`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+- **core\memory\procedural\strategy_mining\pattern_detector.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+  - `hashlib`
+  - `core.memory.procedural.strategy_mining.interfaces`
+- **core\memory\procedural\strategy_mining\strategy_candidates.py**
+  - `core.memory.procedural.strategy_mining.interfaces`
+  - `uuid`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+- **core\memory\procedural\strategy_mining\strategy_miner.py**
+  - `core.memory.procedural.strategy_mining.frequency_analyzer`
+  - `core.memory.procedural.strategy_mining.success_analyzer`
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.strategy_candidates`
+  - `core.memory.procedural.strategy_mining.episode_clusterer`
+  - `core.memory.procedural.strategy_mining.pattern_detector`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_mining.interfaces`
+  - `logging`
+- **core\memory\procedural\strategy_mining\success_analyzer.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_mining.interfaces`
+  - `statistics`
+- **core\memory\procedural\strategy_mining\types.py**
+  - `core.memory.episodic.types`
+  - `pydantic`
+  - `typing`
+- **core\memory\procedural\strategy_mining\__init__.py**
+- **core\memory\procedural\strategy_mining\tests\test_strategy_mining.py**
+  - `core.memory.procedural.strategy_mining.strategy_miner`
+  - `core.memory.episodic.types`
+  - `pytest`
+- **core\memory\procedural\strategy_mining\tests\__init__.py**
+- **core\memory\procedural\strategy_recommendation\interfaces.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_recommendation.types`
+  - `core.memory.procedural.strategy_builder.types`
+  - `abc`
+- **core\memory\procedural\strategy_recommendation\strategy_recommender.py**
+  - `core.memory.episodic.types`
+  - `typing`
+  - `core.memory.procedural.strategy_recommendation.interfaces`
+  - `core.memory.procedural.strategy_recommendation.types`
+  - `core.memory.procedural.strategy_builder.types`
+- **core\memory\procedural\strategy_recommendation\types.py**
+  - `enum`
+  - `core.memory.procedural.strategy_builder.types`
+  - `pydantic`
+  - `typing`
+- **core\memory\procedural\strategy_recommendation\__init__.py**
+- **core\memory\procedural\strategy_recommendation\tests\test_strategy_recommendation.py**
+  - `core.memory.procedural.strategy_recommendation.strategy_recommender`
+  - `core.memory.episodic.types`
+  - `pytest`
+  - `core.memory.procedural.strategy_recommendation.types`
+  - `core.memory.procedural.strategy_builder.types`
+- **core\memory\procedural\strategy_recommendation\tests\__init__.py**
+- **core\memory\procedural\strategy_validation\interfaces.py**
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+  - `abc`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_validation.types`
+- **core\memory\procedural\strategy_validation\strategy_validator.py**
+  - `typing`
+  - `core.memory.procedural.strategy_builder.types`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_validation.types`
+  - `core.memory.procedural.strategy_validation.interfaces`
+- **core\memory\procedural\strategy_validation\types.py**
+  - `enum`
+  - `datetime`
+  - `pydantic`
+  - `typing`
+- **core\memory\procedural\strategy_validation\__init__.py**
+- **core\memory\procedural\strategy_validation\tests\test_strategy_validation.py**
+  - `pytest`
+  - `core.memory.procedural.strategy_validation.strategy_validator`
+  - `core.memory.procedural.strategy_builder.types`
+  - `core.memory.procedural.strategy_mining.types`
+  - `core.memory.procedural.strategy_validation.types`
+- **core\memory\procedural\strategy_validation\tests\__init__.py**
+- **core\monitoring\__init__.py**
+- **core\reports\__init__.py**
+- **core\repositories\__init__.py**
+- **core\services\__init__.py**
+- **core\utils\interfaces.py**
+  - `abc`
+  - `typing`
+- **core\utils\__init__.py**
+- **core\workflows\__init__.py**
+- **scratch\verify_dataset_processor.py**
+  - `app.services.data_service`
+  - `os`
+  - `app.services.dataset_processor`
+  - `orchestrator`
+  - `sys`
+  - `app.services.platform_services`
+  - `pandas`
+- **scripts\api_audit.py**
+  - `json`
+  - `requests`
+  - `os`
+  - `time`
+- **scripts\evaluate_large_dataset.py**
+  - `app.core.langgraph_engine`
+  - `os`
+  - `app.agents.workflow_planner`
+  - `time`
+  - `json`
+  - `app.agents.dataset_understanding`
+  - `sys`
+  - `app.agents.data_quality`
+  - `app.agents.domain_detection`
+  - `urllib.request`
+  - `pandas`
+- **scripts\run_scale_evaluation.py**
+  - `app.core.langgraph_engine`
+  - `os`
+  - `app.agents.workflow_planner`
+  - `sklearn.datasets`
+  - `json`
+  - `app.agents.dataset_understanding`
+  - `sys`
+  - `app.agents.data_quality`
+  - `numpy`
+  - `app.agents.domain_detection`
+  - `pandas`
+- **scripts\run_synthetic_evaluation.py**
+  - `app.core.langgraph_engine`
+  - `os`
+  - `app.agents.workflow_planner`
+  - `json`
+  - `app.agents.dataset_understanding`
+  - `asyncio`
+  - `sys`
+  - `app.agents.data_quality`
+  - `numpy`
+  - `app.agents.domain_detection`
+  - `pandas`
+- **tests\conftest.py**
+  - `app.core.auth`
+  - `app.main`
+  - `app.models.models`
+  - `pytest`
+- **tests\test_agent_bus.py**
+  - `app.services.agent_communication_bus`
+  - `pytest`
+- **tests\test_agent_registry.py**
+  - `app.main`
+  - `app.services.agent_registry`
+  - `fastapi.testclient`
+  - `pytest`
+- **tests\test_approval_api.py**
+  - `fastapi.testclient`
+  - `os`
+  - `pytest`
+  - `json`
+  - `app.main`
+- **tests\test_brain_foundation.py**
+  - `app.brain`
+  - `pytest`
+- **tests\test_brain_memory.py**
+  - `os`
+  - `app.agents.workflow_planner`
+  - `pytest`
+  - `json`
+  - `app.brain.memory`
+- **tests\test_context_builder.py**
+  - `app.services.context_builder`
+  - `os`
+  - `json`
+  - `pytest`
+- **tests\test_dataset_processor.py**
+  - `os`
+  - `pytest`
+  - `json`
+  - `app.services.dataset_processor`
+  - `numpy`
+  - `pandas`
+- **tests\test_dataset_understanding.py**
+  - `app.agents.dataset_understanding`
+  - `os`
+  - `pandas`
+  - `pytest`
+- **tests\test_data_quality.py**
+  - `app.agents.data_quality`
+  - `os`
+  - `pandas`
+  - `pytest`
+- **tests\test_decision_engine.py**
+  - `os`
+  - `pytest`
+  - `json`
+  - `asyncio`
+  - `app.services.decision_engine`
+- **tests\test_domain_detection.py**
+  - `os`
+  - `app.agents.domain_detection`
+  - `pandas`
+  - `pytest`
+- **tests\test_intent_router.py**
+  - `app.services.intent_router`
+  - `pytest`
+- **tests\test_knowledge_memory.py**
+  - `app.services.knowledge_memory`
+  - `os`
+  - `json`
+  - `pytest`
+- **tests\test_multi_agent_collaboration.py**
+  - `app.services.multi_agent_collaboration`
+  - `pytest`
+- **tests\test_privacy_agent.py**
+  - `os`
+  - `app.services.privacy_agent`
+  - `pytest`
+  - `json`
+  - `numpy`
+  - `pandas`
+- **tests\test_real_ai_analyst.py**
+  - `app.services.real_ai_analyst`
+  - `pandas`
+  - `pytest`
+- **tests\test_reasoning_engine.py**
+  - `app.services.reasoning_engine`
+  - `pytest`
+- **tests\test_recommendation_engine.py**
+  - `os`
+  - `app.services.recommendation_engine`
+  - `pytest`
+- **tests\test_semantic_search.py**
+  - `app.services.semantic_search`
+  - `app.services.knowledge_memory`
+  - `os`
+  - `pytest`
+- **tests\test_workflow_planner.py**
+  - `os`
+  - `app.agents.workflow_planner`
+  - `pytest`

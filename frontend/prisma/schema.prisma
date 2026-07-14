@@ -1,0 +1,245 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  lastLogin     DateTime?
+  loginCount    Int       @default(0)
+  role          String    @default("USER") // ADMIN, USER
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+
+  // Platform Relations
+  activityLogs     ActivityLog[]
+  notifications    Notification[]
+  datasets         Dataset[]
+  reports          Report[]
+  chatHistory      ChatHistory[]
+  savedModels      SavedModel[]
+  workflowHistory  WorkflowHistory[]
+  workspaceMembers WorkspaceMember[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  ipAddress    String?
+  userAgent    String?
+  deviceType   String?
+  lastActive   DateTime? @default(now())
+  createdAt    DateTime  @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// --------------------------------------------------------
+// Agentix Specific Models
+// --------------------------------------------------------
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Dataset {
+  id           String   @id @default(cuid())
+  userId       String
+  workspaceId  String?
+  name         String
+  sizeBytes    Int
+  rowCount     Int?
+  colCount     Int?
+  storageUrl   String
+  status       String   @default("UPLOADED") // UPLOADED, CLEANED, FE_COMPLETED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace?       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  versions  DatasetVersion[]
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  userId      String
+  workspaceId String?
+  title       String
+  content     String
+  downloadUrl String?
+  createdAt   DateTime @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model ChatHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String   // 'user' | 'assistant'
+  content   String
+  datasetId String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SavedModel {
+  id           String   @id @default(cuid())
+  userId       String
+  workspaceId  String?
+  datasetId    String
+  name         String
+  algorithm    String
+  accuracy     Float?
+  r2Score      Float?
+  artifactUrl  String?
+  createdAt    DateTime @default(now())
+
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace?     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  versions  ModelVersion[]
+  runs      ExperimentRun[]
+}
+
+model WorkflowHistory {
+  id           String   @id @default(cuid())
+  userId       String
+  workspaceId  String?
+  datasetId    String
+  status       String   // COMPLETED, FAILED, RUNNING
+  durationSecs Int?
+  nodesState   Json?
+  createdAt    DateTime @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model Workspace {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   @default("PERSONAL") // PERSONAL, TEAM, ORGANIZATION
+  ownerId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members     WorkspaceMember[]
+  datasets    Dataset[]
+  reports     Report[]
+  savedModels SavedModel[]
+  workflows   WorkflowHistory[]
+}
+
+model WorkspaceMember {
+  id          String   @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        String   @default("VIEWER") // ADMIN, EDITOR, VIEWER
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, userId])
+}
+
+model DatasetVersion {
+  id            String   @id @default(cuid())
+  datasetId     String
+  version       Int      @default(1)
+  name          String
+  sizeBytes     Int
+  rowCount      Int?
+  colCount      Int?
+  storageUrl    String
+  changeSummary String?
+  createdAt     DateTime @default(now())
+
+  dataset Dataset @relation(fields: [datasetId], references: [id], onDelete: Cascade)
+}
+
+model ModelVersion {
+  id               String   @id @default(cuid())
+  savedModelId     String
+  version          String   // e.g. "v1.0.0"
+  metrics          Json?    // accuracy, loss, precision, recall, custom metrics etc.
+  deploymentStatus String   @default("INACTIVE") // ACTIVE, STAGING, INACTIVE
+  artifactUrl      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  savedModel SavedModel @relation(fields: [savedModelId], references: [id], onDelete: Cascade)
+}
+
+model ExperimentRun {
+  id           String   @id @default(cuid())
+  savedModelId String?
+  name         String
+  status       String   // RUNNING, COMPLETED, FAILED
+  parameters   Json?    // learning_rate, n_estimators, max_depth, etc.
+  metrics      Json?    // accuracy, loss, r2, rmse, mae, etc.
+  isBestModel  Boolean  @default(false)
+  durationSecs Int?
+  createdAt    DateTime @default(now())
+
+  savedModel SavedModel? @relation(fields: [savedModelId], references: [id], onDelete: Cascade)
+}

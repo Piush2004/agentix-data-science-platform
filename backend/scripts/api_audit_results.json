@@ -1,0 +1,184 @@
+[
+    {
+        "method": "GET",
+        "endpoint": "/agents/",
+        "status_code": 200,
+        "latency_ms": 2117.57,
+        "response_snippet": "[{'id': 'metadata_agent', 'name': 'Metadata Agent', 'purpose': 'Extracts dataset shapes, types, and "
+    },
+    {
+        "method": "GET",
+        "endpoint": "/agents/dataset_understanding",
+        "status_code": 404,
+        "latency_ms": 2054.3,
+        "response_snippet": "{'detail': 'Agent not found in registry'}"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/agents/register",
+        "status_code": 422,
+        "latency_ms": 2056.92,
+        "response_snippet": "{'detail': [{'type': 'missing', 'loc': ['body', 'purpose'], 'msg': 'Field required', 'input': {'name"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/approval/pending/test_dataset",
+        "status_code": 404,
+        "latency_ms": 2041.79,
+        "response_snippet": "{'detail': 'Recommendations not found. Run workflow planner first.'}"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/approval/submit",
+        "status_code": 422,
+        "latency_ms": 2054.39,
+        "response_snippet": "{'detail': [{'type': 'missing', 'loc': ['body', 'approved_agents'], 'msg': 'Field required', 'input'"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/data/history",
+        "status_code": 404,
+        "latency_ms": 2039.47,
+        "response_snippet": "{'detail': 'Not Found'}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/data/test_dataset/preview",
+        "status_code": 404,
+        "latency_ms": 2052.24,
+        "response_snippet": "{'detail': 'Not Found'}"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/orchestrator/execute",
+        "status_code": 422,
+        "latency_ms": 2040.56,
+        "response_snippet": "{'detail': [{'type': 'missing', 'loc': ['query', 'dataset_name'], 'msg': 'Field required', 'input': "
+    },
+    {
+        "method": "POST",
+        "endpoint": "/platform/profile",
+        "status_code": 400,
+        "latency_ms": 2037.6,
+        "response_snippet": "{'detail': 'Dataset not found'}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/eda?dataset_name=test_dataset",
+        "status_code": 400,
+        "latency_ms": 2050.31,
+        "response_snippet": "{'detail': 'Dataset not found'}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/xai?dataset_name=test_dataset",
+        "status_code": 200,
+        "latency_ms": 2052.43,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'top_drivers': [], 'bias_detected': False, 'importan"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/mlops",
+        "status_code": 200,
+        "latency_ms": 2056.11,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'status': 'Pending Training', 'drift': False, 'accur"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/dashboard-metrics",
+        "status_code": 200,
+        "latency_ms": 6099.37,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'active_dataset': 'test_upload_file.csv.csv', 'datas"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/system-health",
+        "status_code": 200,
+        "latency_ms": 2055.45,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'cpu': 4.2, 'gpu': 0.0, 'gpu_name': 'None Detected',"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/model-registry",
+        "status_code": 200,
+        "latency_ms": 2063.27,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': [], 'errors': None}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/experiment-runs",
+        "status_code": 200,
+        "latency_ms": 2043.16,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': [], 'errors': None}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/dataset-versions?dataset_name=test_dataset",
+        "status_code": 200,
+        "latency_ms": 2044.61,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': [], 'errors': None}"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/health",
+        "status_code": 200,
+        "latency_ms": 2042.12,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'status': 'Healthy', 'components': {'api': 'Optimal'"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/dataset-summary",
+        "status_code": 200,
+        "latency_ms": 2053.05,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'total_datasets': 3, 'total_size_bytes': 57748, 'tot"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/model-metrics",
+        "status_code": 200,
+        "latency_ms": 2029.53,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'total_models': 0, 'best_accuracy': 0.94, 'best_r2_s"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/recent-activity",
+        "status_code": 200,
+        "latency_ms": 2029.76,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': [{'id': 'act_init', 'action': 'SYSTEM_STARTUP', 'meta"
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/active-agents",
+        "status_code": 200,
+        "latency_ms": 2056.21,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'active_count': 0, 'running_agents': [], 'agents': ["
+    },
+    {
+        "method": "GET",
+        "endpoint": "/platform/storage",
+        "status_code": 200,
+        "latency_ms": 2034.44,
+        "response_snippet": "{'status': 'success', 'message': 'OK', 'data': {'total_gb': 428.77, 'used_gb': 136.12, 'free_gb': 29"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/platform/clean",
+        "status_code": 400,
+        "latency_ms": 2032.6,
+        "response_snippet": "{'detail': 'Dataset not found'}"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/platform/predict",
+        "status_code": 400,
+        "latency_ms": 2042.13,
+        "response_snippet": "{'detail': 'Dataset not found'}"
+    },
+    {
+        "method": "POST",
+        "endpoint": "/platform/chat",
+        "status_code": "ERROR",
+        "latency_ms": 0,
+        "response_snippet": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=5)"
+    }
+]

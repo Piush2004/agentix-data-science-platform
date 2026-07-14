@@ -1,0 +1,8 @@
+pandas
+openpyxl
+scikit-learn
+plotly
+scipy
+xgboost
+shap
+matplotlib

@@ -1,0 +1,16 @@
+{
+    "duration_sec": 7.94,
+    "total_operations": 185,
+    "throughput_ops_sec": 23.3,
+    "average_latency_ms": 1201.93,
+    "failure_rate_percent": 0.0,
+    "peak_cpu_percent": 27.0,
+    "peak_ram_gb": 12.67,
+    "breakdown": {
+        "uploads": 50,
+        "api_calls": 100,
+        "automl": 20,
+        "chats": 10,
+        "reports": 5
+    }
+}
